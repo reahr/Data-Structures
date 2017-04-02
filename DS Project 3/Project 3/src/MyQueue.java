@@ -2,6 +2,7 @@
  * Created by reahr on 3/26/2017.
  */
 public class MyQueue<E> implements Queue<E>{
+
     private Node<E> head;
 
     public MyQueue(){
@@ -9,6 +10,7 @@ public class MyQueue<E> implements Queue<E>{
     }
 
     public E peek(){
+        if (head==null) return null;
         return head.getData();
     }
 
@@ -21,6 +23,7 @@ public class MyQueue<E> implements Queue<E>{
 
     public boolean offer(E item) throws ClassCastException,
             NullPointerException, IllegalArgumentException{
+        if (item==null) throw new NullPointerException("Item offered onto queue cannot be null.");
         Node <E> n= new Node (item);
         if (head==null){
             head=n;
