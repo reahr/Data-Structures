@@ -1,8 +1,13 @@
 import java.util.EmptyStackException;
 
 /**
- * Created by reahr on 3/26/2017.
+ * The Dictionary class represents the collection of words read in from input file
+ *      and is responsible for performing queries in the dictionary and storing all words in an ArrayList.
+ *
+ * @author Reah Rajmangal
+ * @version April 6, 2017
  */
+
 public class MyStack<E> implements Stack<E> {
 
     private Node<E> top;

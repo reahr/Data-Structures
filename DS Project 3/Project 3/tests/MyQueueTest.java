@@ -3,8 +3,13 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by reahr on 4/2/2017.
+ * The Dictionary class represents the collection of words read in from input file
+ *      and is responsible for performing queries in the dictionary and storing all words in an ArrayList.
+ *
+ * @author Reah Rajmangal
+ * @version April 6, 2017
  */
+
 public class MyQueueTest {
 
     //test queue is not empty after initialization

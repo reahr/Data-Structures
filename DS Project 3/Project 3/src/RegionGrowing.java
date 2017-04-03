@@ -26,7 +26,7 @@ import processing.core.PImage;
  * b - run the region growing algorithm (using breadth first search) and show the results 
  * 
  * 
- * @author Joanna Klukowska & ....
+ * @author Joanna Klukowska & Reah Rajmangal
  *
  */
 @SuppressWarnings("serial")
@@ -76,8 +76,8 @@ public class RegionGrowing extends PApplet {
 	//flags controlling the mode of the program
 	//  if false, run` in interactive mode
 	//  if either is true, run in the corresponding test mode 
-	public static boolean RUN_TESTS_DFS = false; 
-	public static boolean RUN_TESTS_BFS = false;
+	public static boolean RUN_TESTS_DFS = true;
+	public static boolean RUN_TESTS_BFS = true;
 
 	//number of seeds to be used in the interactive mode
 	public static int NUM_OF_SEEDS = 100; 
