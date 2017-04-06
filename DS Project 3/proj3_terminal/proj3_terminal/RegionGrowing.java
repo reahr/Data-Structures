@@ -258,7 +258,7 @@ public class RegionGrowing extends PApplet {
 		//apply the depth first search algorithm for region growing
 		
 		//TO DO: replace the line below with your own implementation of the stack 
-		Stack<Integer> pixelLocations = new Stack<Integer>();
+		MyStack<Integer> pixelLocations = new MyStack<Integer>();
 		
 		float pixDifference;
 		pixelLocations.push(y*img.width + x );
@@ -311,14 +311,14 @@ public class RegionGrowing extends PApplet {
 		
 		//apply the depth first search algorithm for region growing
 		
-		//TO DO: replace the line below with your own implementation of the stack 
-		Queue<Integer> pixelLocations = new LinkedList<Integer>();
+		//TODO: replace the line below with your own implementation of the stack
+		MyQueue<Integer> pixelLocations = new MyQueue<Integer>();
 		
 		float pixDifference;
-		pixelLocations.add(y*img.width + x );
+		pixelLocations.offer(y*img.width + x );
 		while (pixelLocations.peek()!=null) {
 			//System.out.println(pixelLocations.size());
-			index = pixelLocations.remove();
+			index = pixelLocations.poll();
 			px = index % img.width;
 			py = index / img.width;
 			//pixels[index] = color(value,value,value); 
@@ -328,7 +328,7 @@ public class RegionGrowing extends PApplet {
 					for (int ny = py-1; ny <= py+1; ny++) {
 						pixDifference = Math.abs( red(imagePixelsCopy[y*img.width+x]) - red(imagePixelsCopy[ny*img.width+nx]));
 						if ( pixDifference <= threshold && pixels[ny*img.width+nx] == back ) {
-							pixelLocations.add(ny*img.width+nx);
+							pixelLocations.offer(ny*img.width+nx);
 							pixels[ny*img.width+nx] = color(value,value,value);
 						}
 					}

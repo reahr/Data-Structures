@@ -3,8 +3,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * The Dictionary class represents the collection of words read in from input file
- *      and is responsible for performing queries in the dictionary and storing all words in an ArrayList.
+ * MyQueueTest tests the methods and constructor of the MyQueue class.
  *
  * @author Reah Rajmangal
  * @version April 6, 2017
@@ -28,13 +27,13 @@ public class MyQueueTest {
     public void testConstructor() {
         try {
             MyQueue<Integer> newIntegers = new MyQueue<Integer>();
-            assertNotNull("Reference null after constructor returns.", newIntegers);
         } catch (Exception e) {
             fail("Unexpected error thrown.");
         }
     }
 
     //test queue is empty by checking that item peeked is null
+    //in turn testing peek method returns null on an empty queue
     @Test
     public void checkMyQueueIsEmpty() {
         try {
@@ -45,26 +44,14 @@ public class MyQueueTest {
         }
     }
 
-    //test peek method returns null on an empty queue (same outcome as test above but diff purpose)
-    @Test
-    public void testPeekIsNullWhenEmpty() {
-        try {
-            MyQueue<Integer> newIntegers = new MyQueue<Integer>();
-            Integer peek = newIntegers.peek();
-            assertTrue("peek() element returned is not null when queue is empty.", peek == null);
-        } catch (Exception e) {
-            fail("Unexpected error thrown.");
-        }
-    }
-
-    //test peek does not throw exception since it returns null on an empty queue
+    //test peek does not throw exception since it returns null on an empty queue (testing assignment to var)
     @Test
     public void testPeekDoesNotThrowException() {
         try {
             MyQueue<Integer> newIntegers = new MyQueue<Integer>();
             Integer peek = newIntegers.peek();
         } catch (Exception e) {
-            fail("Exception is thrown for peek().");
+            fail("Unexpected error thrown.");
         }
     }
 
@@ -96,14 +83,14 @@ public class MyQueueTest {
         }
     }
 
-    //test poll does not throw exception since null is returned if queue is empty
+    //test poll does not throw exception since null is returned if queue is empty (assignment to var)
     @Test
     public void testPollDoesNotThrowException() {
         try {
             MyQueue<Integer> newIntegers = new MyQueue<Integer>();
             Integer pollInteger = newIntegers.poll();
         } catch (Exception e) {
-            fail("Exception thrown incorrectly for poll().");
+            fail("Unexpected error thrown.");
         }
     }
 
@@ -155,6 +142,7 @@ public class MyQueueTest {
             newIntegers.offer(2);
             Integer pollInteger = newIntegers.poll();
             assertTrue("First poll() returns last element offered.", !pollInteger.equals(2));
+            assertTrue("poll() does not return correct item.", pollInteger.equals(1));
         } catch (Exception e) {
             fail("Unexpected error thrown.");
         }
@@ -169,14 +157,14 @@ public class MyQueueTest {
             newIntegers.offer(3);
             Integer firstPoll = newIntegers.poll();
             Integer secondPoll = newIntegers.poll();
-            assertTrue("First poll() returns incorrect data.", firstPoll.equals(1));
-            assertTrue("Second poll() is null when data should still exist in queue.", secondPoll != null);
+            assertTrue("Second poll() is null when data should still exist in queue.",
+                    secondPoll != null);
         } catch (Exception e) {
             fail("Unexpected error thrown.");
         }
     }
 
-    //test what order certain elements are removed (FIFO)
+    //test what order certain elements are removed (FIFO) (checking returns not random)
     @Test
     public void testMyQueueIsLinked2() {
         try {
@@ -186,8 +174,8 @@ public class MyQueueTest {
             newIntegers.offer(3);
             Integer firstPoll = newIntegers.poll();
             Integer secondPoll = newIntegers.poll();
-            assertTrue("First poll() returns incorrect data.", firstPoll.equals(1));
-            assertTrue("Second poll() returns incorrect data.", secondPoll.equals(2));
+            assertTrue("First poll() returns incorrect item.", firstPoll.equals(1));
+            assertTrue("Second poll() returns incorrect item.", secondPoll.equals(2));
         } catch (Exception e) {
             fail("Unexpected error thrown.");
         }
@@ -241,7 +229,7 @@ public class MyQueueTest {
             MyQueue<Integer> newIntegers = new MyQueue<Integer>();
             newIntegers.offer(1);
         } catch (Exception e) {
-            fail("Exception thrown incorrectly for offer().");
+            fail("Exception thrown unexpectedly.");
         }
     }
 
@@ -270,7 +258,7 @@ public class MyQueueTest {
         }
     }
 
-    //test that offer adds onto the last element in queue (not LIFO)
+    //test that offer adds onto the last element in queue (not LIFO) and check first & last element in queue is correct
     @Test
     public void testOfferAddsOnToLastElement() {
         try {
@@ -278,7 +266,10 @@ public class MyQueueTest {
             newIntegers.offer(1);
             newIntegers.offer(2);
             newIntegers.offer(3);
-            assertTrue("First element in queue should not be last one offered.", !newIntegers.peek().equals(3));
+            assertTrue("First element in queue is not first element offered.", newIntegers.peek().equals(1));
+            newIntegers.poll();
+            newIntegers.poll();
+            assertTrue("Last element in queue is not correct item", newIntegers.peek().equals(3));
         } catch (Exception e) {
             fail("Unexpected error thrown.");
         }
@@ -294,21 +285,8 @@ public class MyQueueTest {
             newIntegers.offer(3);
             Integer firstPeek = newIntegers.peek();
             Integer firstPoll = newIntegers.poll();
+            assertTrue("peek() element returned is incorrect ", firstPeek.equals(1));
             assertTrue("poll() does not equal peek() ", firstPeek.equals(firstPoll));
-        } catch (Exception e) {
-            fail("Unexpected error thrown.");
-        }
-    }
-
-    //test that element first offered is element next to be removed (using peek method)
-    @Test
-    public void testOfferAddsOnToLastElement2() {
-        try {
-            MyQueue<Integer> newIntegers = new MyQueue<Integer>();
-            newIntegers.offer(1);
-            newIntegers.offer(2);
-            newIntegers.offer(3);
-            assertTrue("First element in queue is not first element offered.", newIntegers.peek().equals(1));
         } catch (Exception e) {
             fail("Unexpected error thrown.");
         }

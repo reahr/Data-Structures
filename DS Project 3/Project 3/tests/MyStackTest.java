@@ -5,8 +5,7 @@ import java.util.EmptyStackException;
 import static org.junit.Assert.*;
 
 /**
- * The Dictionary class represents the collection of words read in from input file
- *      and is responsible for performing queries in the dictionary and storing all words in an ArrayList.
+ * MyStackTest tests the constructor and methods of the MyStack class.
  *
  * @author Reah Rajmangal
  * @version April 6, 2017
@@ -30,8 +29,7 @@ public class MyStackTest {
     public void testConstructor() {
         try {
             MyStack<Integer> newIntegers = new MyStack<Integer>();
-            assertNotNull("Reference null after constructor returns.", newIntegers);
-        } catch (Exception ex) {
+        } catch (Exception e) {
             fail("Unexpected exception thrown. ");
         }
     }
@@ -71,7 +69,7 @@ public class MyStackTest {
         }
     }
 
-    //test push method adds item onto stack (LIFO, so using peek method)
+    //test push method adds item onto stack (LIFO using peek method)
     @Test
     public void testPushAddsToMyStack() {
         try {
@@ -114,7 +112,7 @@ public class MyStackTest {
         }
     }
 
-    //test that element pushed last is element on top of stack using peek and pop method, which should be equal
+    //test that peek and pop method return elements are equal
     @Test
     public void testMyStackIsLastInFirstOut2() {
         try {
@@ -159,18 +157,7 @@ public class MyStackTest {
         }
     }
 
-    //test if push method throws unexpected error
-    @Test
-    public void testPushThrowsException() {
-        try {
-            MyStack<Integer> newIntegers = new MyStack<Integer>();
-            newIntegers.push(1);
-        } catch (Exception e) {
-            fail("Unexpected exception thrown.");
-        }
-    }
-
-    //test to ensure peek method does not remove element that it returns
+    //test to ensure peek method does not remove element that it returns (assuming empty() works)
     @Test
     public void testPeekDoesNotRemove() {
         try {
@@ -179,25 +166,6 @@ public class MyStackTest {
             newIntegers.push(1);
             newIntegers.peek();
             assertTrue("Item is removed when peek() method is called.", !newIntegers.empty());
-        } catch (Exception e) {
-            fail("Unexpected error thrown.");
-        }
-    }
-
-    //test pop element is not equal to following peek element and if peek element returned is correct
-    @Test
-    public void testPeekAfterPop() {
-        try {
-            MyStack<Integer> newIntegers = new MyStack<Integer>();
-            Integer firstItem = newIntegers.push(1);
-            Integer secondItem = newIntegers.push(2);
-            Integer itemPopped = newIntegers.pop();
-            Integer peekItem = newIntegers.peek();
-            assertFalse("peek() method returns element already popped.",
-                    peekItem.equals(itemPopped));
-            //may return some other element
-            assertTrue("peek() method does not return the correct element after stack uses pop().",
-                    peekItem.equals(firstItem));
         } catch (Exception e) {
             fail("Unexpected error thrown.");
         }
@@ -246,7 +214,7 @@ public class MyStackTest {
         }
     }
 
-    //test if element is removed using pop() and verify remaining element is not equal to it
+    //test if element is removed using pop() and verify remaining element (using peek()) is not equal to it
     @Test
     public void testPopRemovesElement2() {
         try {
@@ -260,7 +228,7 @@ public class MyStackTest {
         }
     }
 
-    //test that item popped is last element pushed onto stack
+    //test that item popped is last element that was pushed onto stack
     @Test
     public void testPopEqualsElementRemoved() {
         try {
@@ -292,7 +260,7 @@ public class MyStackTest {
         }
     }
 
-    //test that after an element is popped, another element popped after can be returned
+    //test that after an element is popped, another element popped after is correct
     @Test
     public void testConsecutivePops() {
         try {
@@ -307,7 +275,7 @@ public class MyStackTest {
         }
     }
 
-    //(Combination) test to verify element popped is not in stack, element popped is correct
+    //(Combination) test to verify element popped is not in stack, element peeked is correct
     //and stack is not empty after peeking into non-empty stack
     @Test
     public void testPopAndPeek() {

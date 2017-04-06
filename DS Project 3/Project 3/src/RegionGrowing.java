@@ -76,8 +76,8 @@ public class RegionGrowing extends PApplet {
 	//flags controlling the mode of the program
 	//  if false, run` in interactive mode
 	//  if either is true, run in the corresponding test mode 
-	public static boolean RUN_TESTS_DFS = true;
-	public static boolean RUN_TESTS_BFS = true;
+	public static boolean RUN_TESTS_DFS = false;
+	public static boolean RUN_TESTS_BFS = false;
 
 	//number of seeds to be used in the interactive mode
 	public static int NUM_OF_SEEDS = 100; 
@@ -255,7 +255,7 @@ public class RegionGrowing extends PApplet {
 		
 		//apply the depth first search algorithm for region growing
 		
-		//TO DO: replace the line below with your own implementation of the stack 
+		//TODO: replace the line below with your own implementation of the stack
 		MyStack<Integer> pixelLocations = new MyStack<Integer>();
 		
 		float pixDifference;
@@ -309,7 +309,7 @@ public class RegionGrowing extends PApplet {
 		
 		//apply the depth first search algorithm for region growing
 		
-		//TO DO: replace the line below with your own implementation of the stack 
+		//TODO: replace the line below with your own implementation of the stack
 		MyQueue<Integer> pixelLocations = new MyQueue<Integer>();
 		
 		float pixDifference;
