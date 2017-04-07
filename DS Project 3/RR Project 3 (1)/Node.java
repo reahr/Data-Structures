@@ -10,6 +10,7 @@ public class Node<E> {
     private Node<E> next;
 
     public Node (E data){
+        //no exception, Stack spec allows for null data
         this.data=data;
     }
 

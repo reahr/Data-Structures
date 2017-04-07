@@ -57,17 +57,6 @@ public class MyStackTest {
         }
     }
 
-    //test push method allows null data
-    @Test
-    public void testPushAllowsNull(){
-        try {
-            MyStack<Integer> newIntegers = new MyStack<Integer>();
-            newIntegers.push(null);
-        } catch (Exception e) {
-            fail("Unexpected error thrown for null element pushed onto stack.");
-        }
-    }
-
     //test stack is not empty after pushing an item onto stack
     @Test
     public void testPushAndNotEmpty() {
