@@ -12,114 +12,144 @@ public class TestTree {
         //handle potential problems with command line arg, file existence and readability
 
         //check if all command line arguments are there
-        if ( args.length < 1 ) {
-            System.err.printf("ERROR: the program expects a file name as an argument.\n");
-            System.err.printf("Usage: java NYCStreetTrees [fileName]\n" );
-            System.exit(1);
-        }
-
-        //set path to first argument and create file
-        String path = args[0];
-        File fileTreeCSV = new File (path);
-
-        //check if the file exists on disk and is readable
-        if (!fileTreeCSV.exists()) {
-            System.err.printf("ERROR: file %s does not exist.\n", args[0]);
-            System.exit(1);
-        }
-
-        if (!fileTreeCSV.canRead()){
-            System.err.printf("ERROR: file %s cannot be read.\n", args[0]);
-        }
-
-        //check if file is empty based on size
-        if (fileTreeCSV.length()==0){
-            System.err.printf("ERROR: %s is empty.", args[0]);
-            System.exit(1);
-        }
-
-        //otherwise, create a Scanner object for the file
-        Scanner fileInput = new Scanner (fileTreeCSV);
-
-        //create inventory to add trees from file using TreeList class
-        TreeCollection treeCollection = new TreeCollection();
-
-        for (int i = 0; fileInput.hasNextLine(); i++) {
-
-            //create ArrayList that splits each line
-            String newLine= fileInput.nextLine();
-            ArrayList<String> treeData = splitCSVLine(newLine);
-
-            if (i == 0) {
-                //read first line which are headers but do not parse data from it
-                //verify headers are correct so that each column in each line has entries that correspond with each header
-                //if headers are incorrect then data will not be parsed accurately into Tree--exit program
-                String[] treeSpecifications= {"tree_id","tree_dbh","status","health","spc_common","zipcode","boroname","x_sp","y_sp"};
-                if (!treeData.get(0).equals(treeSpecifications[0]) || !treeData.get(3).equals(treeSpecifications[1]) ||
-                        !treeData.get(6).equals(treeSpecifications[2]) || !treeData.get(7).equals(treeSpecifications[3]) ||
-                        !treeData.get(9).equals(treeSpecifications[4]) || !treeData.get(25).equals(treeSpecifications[5] ) ||
-                        !treeData.get(29).equals(treeSpecifications[6] ) || !treeData.get(39).equals(treeSpecifications[7]) ||
-                        !treeData.get(40).equals(treeSpecifications[8])){
-                    System.err.printf("ERROR: Headers for %s are invalid for use of tree database.", args[0]);
-                    System.exit(1);
-                }
-                continue;
-            }
-
-            //if line does not have have 41 data entries, silently skip over line
-            //put after header verification because if headers do not match up due to a missing column,
-            //program will exit anyways
-            if (treeData.size()!=41){
-                //following line for debugging purposes
-                System.err.println("Error parsing line " + (i+1) + " from " + args[0]);
-                continue;
-            }
-
-            //declare constructor arguments for Tree object
-            int id, diam, zip;
-            String status, health, spc, boro;
-            double x, y;
-
-            //handle any line after header from file that may not have the correct data type for a specified line
-            try {
-                //parse data from 9 selected columns that have constructor arguments
-                id = Integer.parseInt(treeData.get(0));
-                diam = Integer.parseInt(treeData.get(3));
-                status = treeData.get(6);
-                health = treeData.get(7);
-                spc = treeData.get(9);
-                zip = Integer.parseInt(treeData.get(25));
-                boro = treeData.get(29);
-                x = Double.parseDouble(treeData.get(39));
-                y = Double.parseDouble(treeData.get(40));
-            } catch (IllegalArgumentException e) {
-                //following line for debugging purposes
-                System.err.println("Error parsing line " + (i+1) + " from " + args[0]);
-                continue;
-            }
-
-            //handle any errors thrown by Tree class for invalid arguments
-            try {
-                //create tree object with the extracted data, then add it to inventory if not in list already
-                Tree newTree = new Tree(id, diam, status, health, spc, zip, boro, x, y);
-                if(!treeCollection.contains(newTree)) {
-                    treeCollection.add(newTree);
-                }
-                //If desired, uncomment this for alphabetical listing of species matched
-                //Collections.sort(treeList);
-            }catch (IllegalArgumentException e){
-                //following line for debugging purposes
-                System.err.println("ERROR: Line " + (i+1) + ": "+e.getMessage());
-                continue;
-            }
-        }
-
-        //close file
-        fileInput.close();
-
+//        if ( args.length < 1 ) {
+//            System.err.printf("ERROR: the program expects a file name as an argument.\n");
+//            System.err.printf("Usage: java NYCStreetTrees [fileName]\n" );
+//            System.exit(1);
+//        }
+//
+//        //set path to first argument and create file
+//        String path = args[0];
+//        File fileTreeCSV = new File (path);
+//
+//        //check if the file exists on disk and is readable
+//        if (!fileTreeCSV.exists()) {
+//            System.err.printf("ERROR: file %s does not exist.\n", args[0]);
+//            System.exit(1);
+//        }
+//
+//        if (!fileTreeCSV.canRead()){
+//            System.err.printf("ERROR: file %s cannot be read.\n", args[0]);
+//        }
+//
+//        //check if file is empty based on size
+//        if (fileTreeCSV.length()==0){
+//            System.err.printf("ERROR: %s is empty.", args[0]);
+//            System.exit(1);
+//        }
+//
+//        //otherwise, create a Scanner object for the file
+//        Scanner fileInput = new Scanner (fileTreeCSV);
+//
+//        //create inventory to add trees from file using TreeList class
+//        TreeCollection treeCollection = new TreeCollection();
+//
+//        for (int i = 0; fileInput.hasNextLine(); i++) {
+//
+//            //create ArrayList that splits each line
+//            String newLine= fileInput.nextLine();
+//            ArrayList<String> treeData = splitCSVLine(newLine);
+//
+//            if (i == 0) {
+//                //read first line which are headers but do not parse data from it
+//                //verify headers are correct so that each column in each line has entries that correspond with each header
+//                //if headers are incorrect then data will not be parsed accurately into Tree--exit program
+//                String[] treeSpecifications= {"tree_id","tree_dbh","status","health","spc_common","zipcode","boroname","x_sp","y_sp"};
+//                if (!treeData.get(0).equals(treeSpecifications[0]) || !treeData.get(3).equals(treeSpecifications[1]) ||
+//                        !treeData.get(6).equals(treeSpecifications[2]) || !treeData.get(7).equals(treeSpecifications[3]) ||
+//                        !treeData.get(9).equals(treeSpecifications[4]) || !treeData.get(25).equals(treeSpecifications[5] ) ||
+//                        !treeData.get(29).equals(treeSpecifications[6] ) || !treeData.get(39).equals(treeSpecifications[7]) ||
+//                        !treeData.get(40).equals(treeSpecifications[8])){
+//                    System.err.printf("ERROR: Headers for %s are invalid for use of tree database.", args[0]);
+//                    System.exit(1);
+//                }
+//                continue;
+//            }
+//
+//            //if line does not have have 41 data entries, silently skip over line
+//            //put after header verification because if headers do not match up due to a missing column,
+//            //program will exit anyways
+//            if (treeData.size()!=41){
+//                //following line for debugging purposes
+//                System.err.println("Error parsing line " + (i+1) + " from " + args[0]);
+//                continue;
+//            }
+//
+//            //declare constructor arguments for Tree object
+//            int id, diam, zip;
+//            String status, health, spc, boro;
+//            double x, y;
+//
+//            //handle any line after header from file that may not have the correct data type for a specified line
+//            try {
+//                //parse data from 9 selected columns that have constructor arguments
+//                id = Integer.parseInt(treeData.get(0));
+//                diam = Integer.parseInt(treeData.get(3));
+//                status = treeData.get(6);
+//                health = treeData.get(7);
+//                spc = treeData.get(9);
+//                zip = Integer.parseInt(treeData.get(25));
+//                boro = treeData.get(29);
+//                x = Double.parseDouble(treeData.get(39));
+//                y = Double.parseDouble(treeData.get(40));
+//            } catch (IllegalArgumentException e) {
+//                //following line for debugging purposes
+//                System.err.println("Error parsing line " + (i+1) + " from " + args[0]);
+//                continue;
+//            }
+//
+//            //handle any errors thrown by Tree class for invalid arguments
+//            try {
+//                //create tree object with the extracted data, then add it to inventory if not in list already
+//                Tree newTree = new Tree(id, diam, status, health, spc, zip, boro, x, y);
+//                if(!treeCollection.contains(newTree)) {
+//                    treeCollection.add(newTree);
+//                }
+//                //If desired, uncomment this for alphabetical listing of species matched
+//                //Collections.sort(treeList);
+//            }catch (IllegalArgumentException e){
+//                //following line for debugging purposes
+//                System.err.println("ERROR: Line " + (i+1) + ": "+e.getMessage());
+//                continue;
+//            }
+//        }
+//
+//        //close file
+//        fileInput.close();
+//
+//        System.out.println(treeCollection.getTotalNumberOfTrees());
+//        System.out.println(treeCollection.getCountByBorough("queens"));
+//        System.out.println(treeCollection.getCountByTreeSpeciesBorough("norway maple", "queens"));
+        Tree t1 = new  Tree ( 5, 3, "Alive", "Good", "Oak",
+                10003, "Manhattan",  100, 100 );
+        Tree t2 = new  Tree ( 15, 3, "Alive", "Good", "Red Oak",
+                10003, "Manhattan",  100, 100 );
+        Tree t3 = new  Tree ( 25, 3, "Alive", "Good", "Red Oak",
+                10003, "Bronx",  100, 100 );
+        Tree t4 = new  Tree ( 35, 3, "Alive", "Good", "Oaktree",
+                10003, "Brooklyn",  100, 100 );
+        Tree t5 = new  Tree ( 10, 3, "Alive", "Good", "Birch",
+                10003, "Manhattan",  100, 100 );
+        Tree t6 = new  Tree ( 20, 3, "Alive", "Good", "White Birch",
+                10003, "Bronx",  100, 100 );
+        Tree t7 = new  Tree ( 30, 3, "Alive", "Good", "White Birch",
+                10003, "Queens",  100, 100 );
+        Tree t8 = new  Tree ( 40, 3, "Alive", "Good", "Birch Oak",
+                10003, "Bronx",  100, 100 );
+        TreeCollection treeCollection= new TreeCollection();
         System.out.println(treeCollection.getTotalNumberOfTrees());
-        System.out.println(treeCollection.getCountByBorough("queens"));
-        System.out.println(treeCollection.getCountByTreeSpecies(""));
+        System.out.println(treeCollection.add(t2));
+        System.out.println(treeCollection.getTotalNumberOfTrees());
+        System.out.println(treeCollection.add(t3));
+        System.out.println(treeCollection.getTotalNumberOfTrees());
+        System.out.println(treeCollection.remove(t3));
+        System.out.println(treeCollection.getCountByTreeSpecies("red oak"));
+        System.out.println(treeCollection.getMatchingSpecies("red oak"));
+        System.out.println(treeCollection.remove(t2));
+        System.out.println(treeCollection.getCountByTreeSpecies("red oak"));
+        System.out.println(treeCollection.getMatchingSpecies("red oak"));
+
+
     }
 
     public static  ArrayList<String> splitCSVLine (String textLine){

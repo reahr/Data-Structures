@@ -53,7 +53,7 @@ public class NYCStreetTrees {
         Scanner fileInput = new Scanner (fileTreeCSV);
 
         //create inventory to add trees from file using TreeList class
-        TreeList treeList = new TreeList();
+        TreeCollection treeCollection = new TreeCollection();
 
         for (int i = 0; fileInput.hasNextLine(); i++) {
 
@@ -113,8 +113,8 @@ public class NYCStreetTrees {
             try {
                 //create tree object with the extracted data, then add it to inventory if not in list already
                 Tree newTree = new Tree(id, diam, status, health, spc, zip, boro, x, y);
-                if(!treeList.contains(newTree)) {
-                    treeList.add(newTree);
+                if(!treeCollection.contains(newTree)) {
+                    treeCollection.add(newTree);
                 }
                 //If desired, uncomment this for alphabetical listing of species matched
                 //Collections.sort(treeList);
@@ -129,13 +129,16 @@ public class NYCStreetTrees {
         fileInput.close();
 
         //get total amount trees for NYC
-        int totalNYC= treeList.getTotalNumberOfTrees();
+        int totalNYC= treeCollection.getTotalNumberOfTrees();
         //get totals for each borough using array
-        String[] boro= {"Manhattan", "Bronx", "Brooklyn", "Queens", "Staten Island"};
-        int[]boroTotals={0,0,0,0,0};
-        for (int i=0; i< boro.length; i++){
-            boroTotals[i]=treeList.getCountByBorough(boro[i]);
-        }
+        String[] boro= treeCollection.getBoro();
+        int [] boroTotals= treeCollection.getBoroTotals();
+        System.out.println(treeCollection.getCountByTreeSpeciesBorough("oak", "manhattan"));
+        System.out.println(treeCollection.getCountByTreeSpeciesBorough("oak", "bronx"));
+        System.out.println(treeCollection.getCountByTreeSpeciesBorough("oak", "brooklyn"));
+        System.out.println(treeCollection.getCountByTreeSpeciesBorough("oak", "queens"));
+        System.out.println(treeCollection.getCountByTreeSpeciesBorough("oak", "staten island"));
+
 
         //initialize user input
         Scanner userInput = new Scanner(System.in);
@@ -150,7 +153,7 @@ public class NYCStreetTrees {
             if (treeNameProvided.equalsIgnoreCase("quit")) break;
 
             //get all species in TreeList inventory matched with user's tree name
-            ArrayList<String> matchingSpecies= treeList.getMatchingSpecies(treeNameProvided);
+            ArrayList<String> matchingSpecies= (ArrayList<String>) treeCollection.getMatchingSpecies(treeNameProvided);
 
             if (matchingSpecies.size()==0) System.out.println("\nThere are no records of "+treeNameProvided+" on NYC streets.");
             else {
@@ -159,17 +162,11 @@ public class NYCStreetTrees {
                 //find totals for matched species in NYC and in all boros
                 int totalNYCForMatchedSpecies=0;
                 int[] boroTotalsForMatchedSpecies=  {0,0,0,0,0};
-
-                for (int i=0; i< matchingSpecies.size(); i++){
-                    //print species matched with user input
-                    String matchedSpecies= matchingSpecies.get(i);
-                    System.out.printf("     %s\n",matchedSpecies);
-
-                    //get sum of totals for each matched species (NYC and all boros)
-                    totalNYCForMatchedSpecies+=treeList.getCountByTreeSpecies(matchedSpecies);
-                    for (int j=0; j<boroTotals.length; j++){
-                        boroTotalsForMatchedSpecies[j]+=treeList.getCountByTreeSpeciesBorough(matchedSpecies, boro[j]);
-                    }
+                for (int i=0; i< boro.length; i++){
+                    int boroTotal=treeCollection.getCountByTreeSpeciesBorough(treeNameProvided,
+                            boro[i]);
+                    boroTotalsForMatchedSpecies[i]+=boroTotal;
+                    totalNYCForMatchedSpecies+=boroTotal;
                 }
 
 

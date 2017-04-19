@@ -241,6 +241,7 @@ public class Tree implements Comparable<Tree>{
      *      if tree is "less than" otherTree, return -1
      */
     public int compareTo(Tree otherTree){
+        if (otherTree==null) throw new NullPointerException("Cannot compare to a null object");
         if (this.spc_common.compareToIgnoreCase(otherTree.spc_common)==0){
             return this.tree_id-otherTree.tree_id; //will return negative if lower, positive if higher, 0 if the same
         }
@@ -279,6 +280,7 @@ public class Tree implements Comparable<Tree>{
     }
 
     public int compareName (Tree t){
+        if (t==null) throw new NullPointerException("Cannot compare name of a null object.");
         if (this.spc_common.equalsIgnoreCase(t.spc_common)) return 0;
         else return (this.spc_common.compareTo(t.spc_common));
     }
