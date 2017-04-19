@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 /**
  * Created by reahr on 4/17/2017.
  */
@@ -19,26 +21,27 @@ public class MyBST <E extends Comparable <E>> {
         return true;
     }
 
-    public BSTNode<E> recAdd ( BSTNode<E> node, E newData ) {
+    protected BSTNode<E> recAdd ( BSTNode<E> node, E newData ) {
         if (node == null) { //if root is null
             BSTNode<E> newNode = new BSTNode<E>(newData);
             return newNode;
         }if (newData.compareTo(node.getData()) < 0) {
             node.setLeft (recAdd(node.getLeft(), newData));
         }else
-            node.setRight(recAdd(node.getLeft(), newData));
+            node.setRight(recAdd(node.getRight(), newData));
         return node; //if set right or left node recursively
     }
 
-    public boolean remove(Object o){
+    protected boolean remove(Object o){
         if (o==null) throw new NullPointerException("Specified element cannot be null.");
         E item= (E) o; //cast into type
         if (!this.contains(item)) return false;
         else root=findToRemove(root, item);
+        size--;
         return true;
     }
 
-    private BSTNode<E> findToRemove (BSTNode<E> node, E item){
+    protected BSTNode<E> findToRemove (BSTNode<E> node, E item){
         if (item.compareTo(node.getData()) < 0)
             node.setLeft(findToRemove(node.getLeft(), item));
         else if (item.compareTo(node.getData())> 0)
@@ -86,16 +89,42 @@ public class MyBST <E extends Comparable <E>> {
     }
 
     public E first(){
-        return null;
+        if (root==null) throw new NoSuchElementException ("Tree is empty");
+        if (root.getLeft()==null) return root.getData();
+        BSTNode<E> current= root;
+        while (current.getLeft() != null){
+            current=current.getLeft(); //get (lowest) element
+        }
+        E first= current.getData();
+        return first;
     }
 
     public E last(){
-
-        return null;
+        if (root==null) throw new NoSuchElementException ("Tree is empty");
+        if (root.getRight()==null) return root.getData();
+        BSTNode<E> current= root;
+        while (current.getRight() != null){
+            current=current.getRight(); //get (lowest) element
+        }
+        E last= current.getData();
+        return last;
     }
 
     public String toString(){
-        return null;
+        return "[" + toString (root) + "]";
     }
 
+    private String toString (BSTNode<E> node){
+        String element="";
+        if (node==null) return "";
+        element+= toString(node.getLeft());
+
+        //process node
+        //take away comma if last element
+        if (node.getData().equals(this.last())) element+= String.valueOf(node.getData());
+        else element+= String.valueOf(node.getData())+", ";
+
+        element+= toString(node.getRight());
+        return element;
+    }
 }

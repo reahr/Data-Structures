@@ -139,6 +139,7 @@ public class Tree implements Comparable<Tree>{
      * or "Staten Island"
      */
     private void setBoroname(String boro) {
+        if (boro==null) throw new IllegalArgumentException("Borough cannot be null.");
         String[] treeBoroList= {"Queens","Brooklyn","Manhattan","Bronx", "Staten Island"};
         for (String treeBoroElement:treeBoroList){
             if (boro.equalsIgnoreCase(treeBoroElement)) {
@@ -271,6 +272,17 @@ public class Tree implements Comparable<Tree>{
         }
         return false;
     }
+
+    public boolean sameName (Tree t){
+        if (this.spc_common.equalsIgnoreCase(t.spc_common)) return true;
+        else return false;
+    }
+
+    public int compareName (Tree t){
+        if (this.spc_common.equalsIgnoreCase(t.spc_common)) return 0;
+        else return (this.spc_common.compareTo(t.spc_common));
+    }
+
 
     /**
      * Creates a String object for Tree object with its Tree ID, Species, Status Borough, and Zipcode

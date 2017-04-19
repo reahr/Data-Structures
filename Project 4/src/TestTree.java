@@ -2,23 +2,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Collections;
 
 /**
- * This class allows user to check popularity of different tree names based off a NYC Tree Census data set.
- *
- * Any exceptions while parsing data from file or creating objects are skipped over silently
- *      The try/catch blocks of these  handlers include a line that will print if there is any error. If desired,
- *      uncomment these lines to find any errors that will throw an exception. (Lines 85, 108, 123)
- *
- * Uncomment out "Collections.sort(treeList)" to sort TreeList ArrayList (Line 120)
- *
- * @author Reah Rajmangal
- * @version February 14, 2017
+ * Created by reahr on 4/18/2017.
  */
-public class NYCStreetTrees {
-
-    public static void main (String[] args) throws FileNotFoundException{
+public class TestTree {
+    public static void main (String[] args) throws FileNotFoundException {
 
         //handle potential problems with command line arg, file existence and readability
 
@@ -53,7 +42,7 @@ public class NYCStreetTrees {
         Scanner fileInput = new Scanner (fileTreeCSV);
 
         //create inventory to add trees from file using TreeList class
-        TreeList treeList = new TreeList();
+        TreeCollection treeCollection = new TreeCollection();
 
         for (int i = 0; fileInput.hasNextLine(); i++) {
 
@@ -82,7 +71,7 @@ public class NYCStreetTrees {
             //program will exit anyways
             if (treeData.size()!=41){
                 //following line for debugging purposes
-                //System.err.println("Error parsing line " + (i+1) + " from " + args[0]);
+                System.err.println("Error parsing line " + (i+1) + " from " + args[0]);
                 continue;
             }
 
@@ -105,7 +94,7 @@ public class NYCStreetTrees {
                 y = Double.parseDouble(treeData.get(40));
             } catch (IllegalArgumentException e) {
                 //following line for debugging purposes
-                //System.err.println("Error parsing line " + (i+1) + " from " + args[0]);
+                System.err.println("Error parsing line " + (i+1) + " from " + args[0]);
                 continue;
             }
 
@@ -113,14 +102,14 @@ public class NYCStreetTrees {
             try {
                 //create tree object with the extracted data, then add it to inventory if not in list already
                 Tree newTree = new Tree(id, diam, status, health, spc, zip, boro, x, y);
-                if(!treeList.contains(newTree)) {
-                    treeList.add(newTree);
+                if(!treeCollection.contains(newTree)) {
+                    treeCollection.add(newTree);
                 }
                 //If desired, uncomment this for alphabetical listing of species matched
                 //Collections.sort(treeList);
             }catch (IllegalArgumentException e){
                 //following line for debugging purposes
-                //System.err.println("ERROR: Line " + (i+1) + ": "+e.getMessage());
+                System.err.println("ERROR: Line " + (i+1) + ": "+e.getMessage());
                 continue;
             }
         }
@@ -128,77 +117,11 @@ public class NYCStreetTrees {
         //close file
         fileInput.close();
 
-        //get total amount trees for NYC
-        int totalNYC= treeList.getTotalNumberOfTrees();
-        //get totals for each borough using array
-        String[] boro= {"Manhattan", "Bronx", "Brooklyn", "Queens", "Staten Island"};
-        int[]boroTotals={0,0,0,0,0};
-        for (int i=0; i< boro.length; i++){
-            boroTotals[i]=treeList.getCountByBorough(boro[i]);
-        }
-
-        //initialize user input
-        Scanner userInput = new Scanner(System.in);
-        String treeNameProvided = "";
-
-        //create loop to continue asking user for input until entering "quit"
-        while (!treeNameProvided.equalsIgnoreCase("quit")) {
-            System.out.print("\nEnter the tree species to learn more about it (\"quit\" to stop): ");
-            //keep case insensitive
-            treeNameProvided=userInput.nextLine().trim();
-
-            if (treeNameProvided.equalsIgnoreCase("quit")) break;
-
-            //get all species in TreeList inventory matched with user's tree name
-            ArrayList<String> matchingSpecies= treeList.getMatchingSpecies(treeNameProvided);
-
-            if (matchingSpecies.size()==0) System.out.println("\nThere are no records of "+treeNameProvided+" on NYC streets.");
-            else {
-                System.out.println("All matching species:");
-
-                //find totals for matched species in NYC and in all boros
-                int totalNYCForMatchedSpecies=0;
-                int[] boroTotalsForMatchedSpecies=  {0,0,0,0,0};
-
-                for (int i=0; i< matchingSpecies.size(); i++){
-                    //print species matched with user input
-                    String matchedSpecies= matchingSpecies.get(i);
-                    System.out.printf("     %s\n",matchedSpecies);
-
-                    //get sum of totals for each matched species (NYC and all boros)
-                    totalNYCForMatchedSpecies+=treeList.getCountByTreeSpecies(matchedSpecies);
-                    for (int j=0; j<boroTotals.length; j++){
-                        boroTotalsForMatchedSpecies[j]+=treeList.getCountByTreeSpeciesBorough(matchedSpecies, boro[j]);
-                    }
-                }
-
-
-                System.out.println("\nPopularity in the city:");
-
-                //get percentage of total matched in NYC out of all trees in NYC
-                double percentageTotalNYC= ((double)totalNYCForMatchedSpecies/(double)totalNYC)*100;
-                if (Double.isNaN(percentageTotalNYC)) percentageTotalNYC=0;
-                System.out.printf("     %-13s: %,8d %-10s %6.2f%%\n", "NYC", totalNYCForMatchedSpecies, "("+String.format("%,d",totalNYC)+")",percentageTotalNYC);
-
-                //get percentage of totals matched for each boro out of all trees in each boro (using array)
-                for (int i=0; i<boroTotalsForMatchedSpecies.length; i++) {
-                    double percentageTotalBoro= ((double)boroTotalsForMatchedSpecies[i]/(double)boroTotals[i])*100;
-                    if (Double.isNaN(percentageTotalBoro)) percentageTotalBoro=0;
-                    System.out.printf("     %-13s: %,8d %-10s %6.2f%%\n", boro[i], boroTotalsForMatchedSpecies[i],
-                            "("+String.format("%,d",boroTotals[i])+")", percentageTotalBoro);
-                }
-            }
-        }
+        System.out.println(treeCollection.getTotalNumberOfTrees());
+        System.out.println(treeCollection.getCountByBorough("queens"));
+        System.out.println(treeCollection.getCountByTreeSpecies(""));
     }
 
-    /**
-     * Splits the given line of a CSV file according to commas and double quotes
-     * (double quotes are used to surround multi-word entries that may contain commas).
-     *
-     * @param textLine line of text to be parsed
-     *
-     * @return an Arraylist containing all individual entries/token found on the line.
-     */
     public static  ArrayList<String> splitCSVLine (String textLine){
         ArrayList<String> entries = new ArrayList<String>();
         int lineLength = textLine.length();
@@ -257,4 +180,5 @@ public class NYCStreetTrees {
 
         return entries;
     }
+
 }

@@ -1,7 +1,11 @@
+package src;
+
+import src.Tree;
+
 import java.util.ArrayList;
 
 /**
- * This class creates a TreeList object that contains Tree objects
+ * This class creates a src.TreeList object that contains src.Tree objects
  *
  * @author Reah Rajmangal
  * @version February 14, 2017
@@ -13,9 +17,9 @@ public class TreeList extends ArrayList<Tree>{
     public TreeList(){}
 
     /**
-     * Get total amount of Tree objects in TreeList object
+     * Get total amount of src.Tree objects in src.TreeList object
      *
-     * @return an integer that is the total number of Tree objects in TreeList object
+     * @return an integer that is the total number of src.Tree objects in src.TreeList object
      */
     public int getTotalNumberOfTrees(){
         return this.size();
@@ -24,9 +28,9 @@ public class TreeList extends ArrayList<Tree>{
     /**
      * Gets total amount of trees in a specific NYC borough
      *
-     * @param boroname String that represents where Tree objects are "located"
+     * @param boroname String that represents where src.Tree objects are "located"
      *
-     * @return an integer that is the total number of Tree objects located in borough provided
+     * @return an integer that is the total number of src.Tree objects located in borough provided
      */
     public int getCountByBorough (String boroname){
         int countByBorough=0;
@@ -43,7 +47,7 @@ public class TreeList extends ArrayList<Tree>{
      *
      * @param speciesName String that represents a tree species
      *
-     * @return an integer that is the total number of Tree objects that are of the species provided
+     * @return an integer that is the total number of src.Tree objects that are of the species provided
      */
     public int getCountByTreeSpecies (String speciesName){
         int countBySpecies=0;
@@ -59,9 +63,9 @@ public class TreeList extends ArrayList<Tree>{
      * Gets total amount of trees based on a specific tree species and borough
      *
      * @param speciesName String that represents a tree species
-     * @param boroname String that represents where Tree objects are "located"
+     * @param boroname String that represents where src.Tree objects are "located"
      *
-     * @return an integer that is the total number of Tree objects that are of the species provided and
+     * @return an integer that is the total number of src.Tree objects that are of the species provided and
      *      in the borough provided
      */
     public int getCountByTreeSpeciesBorough(String speciesName, String boroname){
@@ -84,7 +88,7 @@ public class TreeList extends ArrayList<Tree>{
      * @return a String ArrayList object that contains all the matched tree species based off of the species provided
      */
     public ArrayList<String> getMatchingSpecies (String speciesName){
-        speciesName=speciesName.trim(); //just in case TreeList is created manually instead of by data from input file
+        speciesName=speciesName.trim(); //just in case src.TreeList is created manually instead of by data from input file
         ArrayList<String> matchingSpecies=new ArrayList<String>();
         for (int i=0; i < this.size(); i++){
             String treeSpecies= this.get(i).getSpc_common().toLowerCase();
@@ -98,10 +102,10 @@ public class TreeList extends ArrayList<Tree>{
     }
 
     /**
-     * Creates a String for TreeList object with all its Tree objects' Tree ID,
+     * Creates a String for src.TreeList object with all its src.Tree objects' src.Tree ID,
      *      Species, Status Borough, and Zipcode
      *
-     * @return a String that represents a list of all the Tree objects' with their information
+     * @return a String that represents a list of all the src.Tree objects' with their information
      */
     public String toString(){
         String listOfTrees= "";
