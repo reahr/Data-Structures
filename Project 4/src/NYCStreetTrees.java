@@ -151,6 +151,12 @@ public class NYCStreetTrees {
             else {
                 System.out.println("All matching species:");
 
+                for (int i=0; i< matchingSpecies.size(); i++) {
+                    //print species matched with user input
+                    String matchedSpecies = matchingSpecies.get(i);
+                    System.out.printf("     %s\n", matchedSpecies);
+                }
+
                 //find totals for matched species in NYC and in all boros
                 int totalNYCForMatchedSpecies=0;
                 int[] boroTotalsForMatchedSpecies=  {0,0,0,0,0};

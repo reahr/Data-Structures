@@ -124,7 +124,10 @@ public class TreeCollection extends MyBST<Tree> {
 
         //to keep count of borough
         for (int i = 0; i < boro.length; i++) {
-            if (tree.getBoroname().trim().equalsIgnoreCase(boro[i])) boroTotals[i]++;
+            if (tree.getBoroname().trim().equalsIgnoreCase(boro[i])){
+                boroTotals[i]++;
+                break;
+            }
         }
 
         if (!species.contains(tree.getSpc_common().toLowerCase().trim()))
@@ -139,12 +142,15 @@ public class TreeCollection extends MyBST<Tree> {
         Tree tree = (Tree) o; //cast into type
         if (!this.contains(tree)) return false;
         root = findToRemove(root, tree);
-        String treeBoro = tree.getBoroname().toLowerCase().trim();
+        String treeBoro = tree.getBoroname().trim();
         String treeSpc = tree.getSpc_common().toLowerCase().trim();
         size--;
 
         for (int i = 0; i < boro.length; i++) {
-            if (treeBoro.equals(boro[i])) boroTotals[i]--;
+            if (treeBoro.equalsIgnoreCase(boro[i])) {
+                boroTotals[i]--;
+                break;
+            }
         }
 
         //worst case scenario: check if TreeCollection contains a tree with removed tree's specific unique treespc
