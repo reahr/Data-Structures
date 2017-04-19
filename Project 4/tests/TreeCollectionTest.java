@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-public class TreeListTest {
+public class TreeCollectionTest {
 
 
     public Tree t1 = new  Tree ( 5, 3, "Alive", "Good", "Oak",
@@ -30,11 +30,11 @@ public class TreeListTest {
     @Test
     public void testArrayListExtended () {
         try{
-            TreeList tl = new TreeList();
+            TreeCollection tl = new TreeCollection();
             assertNotNull( "Reference null after constructor returns.", tl );
 
             assertTrue( "TreeList class does not implement ArrayList<?>",
-                    tl  instanceof ArrayList<?> ) ;
+                    tl  instanceof MyBST<?> ) ;
 
         }
         catch (Exception ex ) {
@@ -46,7 +46,7 @@ public class TreeListTest {
     @Test
     public void testConstructor() {
         try{
-            TreeList tl = new TreeList();
+            TreeCollection tl = new TreeCollection();
             assertNotNull( "Reference null after constructor returns.", tl );
         }
         catch (Exception ex ) {
@@ -63,7 +63,7 @@ public class TreeListTest {
     @Test
     public void testGetCountByTreeSpecies1() {
 
-        TreeList tl = new TreeList();
+        TreeCollection tl = new TreeCollection();
         assertNotNull( "Reference null after constructor returns.", tl );
 
         tl.add(t1);
@@ -74,7 +74,7 @@ public class TreeListTest {
 
     @Test
     public void testGetCountByTreeSpecies2() {
-        TreeList tl = new TreeList();
+        TreeCollection tl = new TreeCollection();
         assertNotNull( "Reference null after constructor returns.", tl );
 
         tl.add(t1);
@@ -90,7 +90,7 @@ public class TreeListTest {
 
     @Test
     public void testGetCountByTreeSpecies3() {
-        TreeList tl = new TreeList();
+        TreeCollection tl = new TreeCollection();
         assertNotNull( "Reference null after constructor returns.", tl );
 
         tl.add(t1);
@@ -105,7 +105,7 @@ public class TreeListTest {
 
     @Test
     public void testGetCountByBorough1() {
-        TreeList tl = new TreeList();
+        TreeCollection tl = new TreeCollection();
         assertNotNull( "Reference null after constructor returns.", tl );
 
         assertTrue("return value for \"Manhattan\" not equal to 0 for empty TreeList", tl.getCountByBorough("Manhattan")== 0 );
@@ -113,7 +113,7 @@ public class TreeListTest {
 
     @Test
     public void testGetCountByBorough2() {
-        TreeList tl = new TreeList();
+        TreeCollection tl = new TreeCollection();
         assertNotNull( "Reference null after constructor returns.", tl );
 
         tl.add(t1);
@@ -128,7 +128,7 @@ public class TreeListTest {
 
     @Test
     public void testGetCountByBorough3() {
-        TreeList tl = new TreeList();
+        TreeCollection tl = new TreeCollection();
         assertNotNull( "Reference null after constructor returns.", tl );
 
         tl.add(t1);
@@ -144,7 +144,7 @@ public class TreeListTest {
     @Test
     public void testGetCountByTreeSpeciesBorough1() {
 
-        TreeList tl = new TreeList();
+        TreeCollection tl = new TreeCollection();
         assertNotNull( "Reference null after constructor returns.", tl );
 
         assertTrue("return value for \"Manhattan\" not equal to 0 for empty TreeList",
@@ -154,7 +154,7 @@ public class TreeListTest {
 
     @Test
     public void testGetCountByTreeSpeciesBorough2() {
-        TreeList tl = new TreeList();
+        TreeCollection tl = new TreeCollection();
         assertNotNull( "Reference null after constructor returns.", tl );
 
         tl.add(t1);
@@ -170,13 +170,13 @@ public class TreeListTest {
     @Test
     public void testGetTotalNumberOfTrees() {
         try{
-            TreeList tl = new TreeList();
+            TreeCollection tl = new TreeCollection();
             assertNotNull( "Reference null after constructor returns.", tl );
 
             tl.add(t1);
             tl.add(t2);
             assertTrue("return value not equal to 2 after two trees added", tl.getTotalNumberOfTrees() == 2 );
-            assertTrue("return values from size() and getTotalNumberOfTrees() differ " , tl.getTotalNumberOfTrees() == tl.size() ) ;
+            assertTrue("return values from size() and getTotalNumberOfTrees() differ " , tl.getTotalNumberOfTrees() == tl.size ) ;
 
 
         }

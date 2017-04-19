@@ -14,7 +14,7 @@ import java.util.Collections;
  * Uncomment out "Collections.sort(treeList)" to sort TreeList ArrayList (Line 120)
  *
  * @author Reah Rajmangal
- * @version February 14, 2017
+ * @version April 20, 2017
  */
 public class NYCStreetTrees {
 
@@ -113,9 +113,7 @@ public class NYCStreetTrees {
             try {
                 //create tree object with the extracted data, then add it to inventory if not in list already
                 Tree newTree = new Tree(id, diam, status, health, spc, zip, boro, x, y);
-                if(!treeCollection.contains(newTree)) {
-                    treeCollection.add(newTree);
-                }
+                treeCollection.add(newTree);
                 //If desired, uncomment this for alphabetical listing of species matched
                 //Collections.sort(treeList);
             }catch (IllegalArgumentException e){
@@ -130,15 +128,9 @@ public class NYCStreetTrees {
 
         //get total amount trees for NYC
         int totalNYC= treeCollection.getTotalNumberOfTrees();
-        //get totals for each borough using array
+        //get totals for each borough using getter method
         String[] boro= treeCollection.getBoro();
         int [] boroTotals= treeCollection.getBoroTotals();
-        System.out.println(treeCollection.getCountByTreeSpeciesBorough("oak", "manhattan"));
-        System.out.println(treeCollection.getCountByTreeSpeciesBorough("oak", "bronx"));
-        System.out.println(treeCollection.getCountByTreeSpeciesBorough("oak", "brooklyn"));
-        System.out.println(treeCollection.getCountByTreeSpeciesBorough("oak", "queens"));
-        System.out.println(treeCollection.getCountByTreeSpeciesBorough("oak", "staten island"));
-
 
         //initialize user input
         Scanner userInput = new Scanner(System.in);

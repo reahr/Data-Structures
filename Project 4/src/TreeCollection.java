@@ -7,61 +7,65 @@ import java.util.Collection;
  */
 public class TreeCollection extends MyBST<Tree> {
 
-    public String[] getBoro() {
-        return boro;
-    }
-
+    //to keep track of tree counts in boroughs as they are added or removed
     private String[] boro = {"manhattan", "bronx", "brooklyn", "queens", "staten island"};
-
-    public int[] getBoroTotals() {
-        return boroTotals;
-    }
-
     private int[] boroTotals = {0, 0, 0, 0, 0};
     private ArrayList<String> species = new ArrayList<String>(); //to keep track of unique tree species
 
     //default constructor creates empty list
-    public TreeCollection() {}
+    public TreeCollection() {
+    }
+
+    //to retrive total number of tree counts by borough
+    public String[] getBoro() {
+        return boro;
+    }
+
+    public int[] getBoroTotals() {
+        return boroTotals;
+    }
 
     public int getTotalNumberOfTrees() {
         return this.size;
     }
 
     public int getCountByTreeSpecies(String speciesName) {
-        speciesName = speciesName.toLowerCase();
+        speciesName = speciesName.toLowerCase().trim();
         ArrayList<String> speciesMatched = (ArrayList<String>) this.getMatchingSpecies(speciesName);
         int countByTreeSpecies = 0;
         for (int i = 0; i < speciesMatched.size(); i++) {
-            countByTreeSpecies += getCount(root, speciesMatched.get(i));
+            countByTreeSpecies += recgetCountByTreeSpecies(root, speciesMatched.get(i));
         }
         return countByTreeSpecies;
     }
 
-    private int getCount(BSTNode<Tree> treeNode, String name) {
+    private int recgetCountByTreeSpecies(BSTNode<Tree> treeNode, String name) {
         int addMe = 0;
         if (treeNode == null) return 0;
         //else get data out of node and get its spc name
         Tree tree = treeNode.getData();
-        String treeSpcName = tree.getSpc_common().toLowerCase();
+        String treeSpcName = tree.getSpc_common().toLowerCase().trim();
         if (treeSpcName.compareTo(name) < 0) {
-            addMe += getCount(treeNode.getRight(), name);
+            addMe += recgetCountByTreeSpecies(treeNode.getRight(), name);
         } else if (treeSpcName.compareTo(name) > 0) {
-            addMe += getCount(treeNode.getLeft(), name);
+            addMe += recgetCountByTreeSpecies(treeNode.getLeft(), name);
         } else {
-
-            addMe += 1 + getCount(treeNode.getRight(), name) + getCount(treeNode.getLeft(), name);
+            //get search from both children if necessary
+            addMe += 1 + recgetCountByTreeSpecies(treeNode.getRight(), name)
+                    + recgetCountByTreeSpecies(treeNode.getLeft(), name);
         }
         return addMe;
     }
 
     public Collection<String> getMatchingSpecies(String speciesName) {
-        speciesName = speciesName.trim(); //just in case TreeList is created manually instead of by data from input file
+        speciesName = speciesName.toLowerCase().trim(); //just in case TreeList is created manually instead of by data from input file
+        //ArrayList is a collection (cast to ArrayList if necessary)
         ArrayList<String> matchingSpecies = new ArrayList<String>();
         for (int i = 0; i < species.size(); i++) {
             String treeSpecies = species.get(i);
             //find if substring of an actual species
             //if so, check to see if that species is in matched list, if not, then add it
-            if (treeSpecies.contains(speciesName.toLowerCase()) && !matchingSpecies.contains(treeSpecies)) {
+            if (treeSpecies.contains(speciesName) && !matchingSpecies.contains(treeSpecies)) {
                 matchingSpecies.add(treeSpecies);
             }
         }
@@ -69,7 +73,7 @@ public class TreeCollection extends MyBST<Tree> {
     }
 
     public int getCountByTreeSpeciesBorough(String speciesName, String boroName) {
-        speciesName = speciesName.toLowerCase();
+        speciesName = speciesName.toLowerCase().trim();
         boroName = boroName.toLowerCase().trim();
         ArrayList<String> speciesMatched = (ArrayList<String>) this.getMatchingSpecies(speciesName);
         int countByTreeSpecies = 0;
@@ -115,16 +119,16 @@ public class TreeCollection extends MyBST<Tree> {
         if (tree == null) {
             throw new NullPointerException("Specified element cannot be null.");
         } else if (this.contains(tree)) return false; //check if element already exists
-        root = recAdd(root, tree);
+        root = recAdd(root, tree); //have to change access modifier to protected in order to allow access to this
         this.size++;
 
         //to keep count of borough
         for (int i = 0; i < boro.length; i++) {
-            if (tree.getBoroname().equalsIgnoreCase(boro[i])) boroTotals[i]++;
+            if (tree.getBoroname().trim().equalsIgnoreCase(boro[i])) boroTotals[i]++;
         }
 
-        if (!species.contains(tree.getSpc_common().toLowerCase()))
-            species.add(tree.getSpc_common().toLowerCase());
+        if (!species.contains(tree.getSpc_common().toLowerCase().trim()))
+            species.add(tree.getSpc_common().toLowerCase().trim());
 
         return true;
     }
@@ -134,18 +138,18 @@ public class TreeCollection extends MyBST<Tree> {
         if (o == null) throw new NullPointerException("Specified element cannot be null.");
         Tree tree = (Tree) o; //cast into type
         if (!this.contains(tree)) return false;
-        else root = findToRemove(root, tree);
-        String treeBoro= tree.getBoroname().toLowerCase();
-        String treeSpc= tree.getSpc_common().toLowerCase();
+        root = findToRemove(root, tree);
+        String treeBoro = tree.getBoroname().toLowerCase().trim();
+        String treeSpc = tree.getSpc_common().toLowerCase().trim();
         size--;
 
         for (int i = 0; i < boro.length; i++) {
-            if (tree.getBoroname().equals(boro[i])) boroTotals[i]--;
+            if (treeBoro.equals(boro[i])) boroTotals[i]--;
         }
 
         //worst case scenario: check if TreeCollection contains a tree with removed tree's specific unique treespc
         //if no, we have to remove that tree species from the arraylist that contains unique species
-        if (getCountByTreeSpecies(treeSpc)==0) species.remove(treeSpc);
+        if (getCountByTreeSpecies(treeSpc) == 0) species.remove(treeSpc);
         return true;
     }
 
