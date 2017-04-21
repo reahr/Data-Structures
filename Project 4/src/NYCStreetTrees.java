@@ -133,6 +133,12 @@ public class NYCStreetTrees {
         //get totals for each borough using getter method (change according to order on spec)
         String[] boroNames= {"Manhattan", "Bronx", "Brooklyn", "Queens", "Staten Island"};
         HashMap<String, Integer> boroCount= treeCollection.getBoroCount();
+        int [] boroTotals={0, 0, 0, 0, 0};
+        for (int i=0; i<boroNames.length; i++ ) {
+            if (boroCount.get(boroNames[i].toLowerCase()) != null){
+                boroTotals[i] += boroCount.get(boroNames[i].toLowerCase());
+            }
+        }
 
         //initialize user input
         Scanner userInput = new Scanner(System.in);
@@ -162,9 +168,9 @@ public class NYCStreetTrees {
                 //find totals for matched species in NYC and in all boros
                 int totalNYCForMatchedSpecies=0;
                 ArrayList<Integer> boroTotalsForMatchedSpecies=  new ArrayList<Integer>();
-                for (int i=0; i< boro.length; i++){
+                for (int i=0; i< boroNames.length; i++){
                     int boroTotal=treeCollection.getCountByTreeSpeciesBorough(treeNameProvided,
-                            boro[i]);
+                            boroNames[i].toLowerCase());
                     boroTotalsForMatchedSpecies.add(boroTotal);
                     totalNYCForMatchedSpecies+=boroTotal;
                 }
