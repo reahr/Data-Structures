@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Collections;
 
@@ -128,9 +130,9 @@ public class NYCStreetTrees {
 
         //get total amount trees for NYC
         int totalNYC= treeCollection.getTotalNumberOfTrees();
-        //get totals for each borough using getter method
-        String[] boro= treeCollection.getBoro();
-        int [] boroTotals= treeCollection.getBoroTotals();
+        //get totals for each borough using getter method (change according to order on spec)
+        String[] boroNames= {"Manhattan", "Bronx", "Brooklyn", "Queens", "Staten Island"};
+        HashMap<String, Integer> boroCount= treeCollection.getBoroCount();
 
         //initialize user input
         Scanner userInput = new Scanner(System.in);
@@ -159,11 +161,11 @@ public class NYCStreetTrees {
 
                 //find totals for matched species in NYC and in all boros
                 int totalNYCForMatchedSpecies=0;
-                int[] boroTotalsForMatchedSpecies=  {0,0,0,0,0};
+                ArrayList<Integer> boroTotalsForMatchedSpecies=  new ArrayList<Integer>();
                 for (int i=0; i< boro.length; i++){
                     int boroTotal=treeCollection.getCountByTreeSpeciesBorough(treeNameProvided,
                             boro[i]);
-                    boroTotalsForMatchedSpecies[i]+=boroTotal;
+                    boroTotalsForMatchedSpecies.add(boroTotal);
                     totalNYCForMatchedSpecies+=boroTotal;
                 }
 
@@ -176,10 +178,10 @@ public class NYCStreetTrees {
                 System.out.printf("     %-13s: %,8d %-10s %6.2f%%\n", "NYC", totalNYCForMatchedSpecies, "("+String.format("%,d",totalNYC)+")",percentageTotalNYC);
 
                 //get percentage of totals matched for each boro out of all trees in each boro (using array)
-                for (int i=0; i<boroTotalsForMatchedSpecies.length; i++) {
-                    double percentageTotalBoro= ((double)boroTotalsForMatchedSpecies[i]/(double)boroTotals[i])*100;
+                for (int i=0; i<boroTotalsForMatchedSpecies.size(); i++) {
+                    double percentageTotalBoro= ((double)boroTotalsForMatchedSpecies.get(i)/(double)boroTotals[i])*100;
                     if (Double.isNaN(percentageTotalBoro)) percentageTotalBoro=0;
-                    System.out.printf("     %-13s: %,8d %-10s %6.2f%%\n", boro[i], boroTotalsForMatchedSpecies[i],
+                    System.out.printf("     %-13s: %,8d %-10s %6.2f%%\n", boroNames[i], boroTotalsForMatchedSpecies.get(i),
                             "("+String.format("%,d",boroTotals[i])+")", percentageTotalBoro);
                 }
             }

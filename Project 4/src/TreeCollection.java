@@ -1,6 +1,7 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 /**
  * Created by reahr on 4/18/2017.
@@ -8,21 +9,16 @@ import java.util.Collection;
 public class TreeCollection extends MyBST<Tree> {
 
     //to keep track of tree counts in boroughs as they are added or removed
-    private String[] boro = {"manhattan", "bronx", "brooklyn", "queens", "staten island"};
-    private int[] boroTotals = {0, 0, 0, 0, 0};
-    private ArrayList<String> species = new ArrayList<String>(); //to keep track of unique tree species
+    private HashMap<String, Integer> boroCount=new HashMap<String, Integer>();
+    ArrayList<String> species = new ArrayList<String>(); //to keep track of unique tree species
+    private ArrayList<Integer> speciesCount= new ArrayList<Integer>();
 
     //default constructor creates empty list
     public TreeCollection() {
     }
 
-    //to retrive total number of tree counts by borough
-    public String[] getBoro() {
-        return boro;
-    }
-
-    public int[] getBoroTotals() {
-        return boroTotals;
+    public HashMap<String, Integer> getBoroCount() {
+        return boroCount;
     }
 
     public int getTotalNumberOfTrees() {
@@ -108,54 +104,45 @@ public class TreeCollection extends MyBST<Tree> {
 
     public int getCountByBorough(String boroName) {
         boroName = boroName.trim().toLowerCase();
-        for (int i = 0; i < boro.length; i++) {
-            if (boroName.equalsIgnoreCase(boro[i])) return boroTotals[i];
-        }
-        return 0;
+        return boroCount.get(boroName);
     }
 
     @Override
     public boolean add(Tree tree) {
-        if (tree == null) {
-            throw new NullPointerException("Specified element cannot be null.");
-        } else if (this.contains(tree)) return false; //check if element already exists
-        root = recAdd(root, tree); //have to change access modifier to protected in order to allow access to this
-        this.size++;
+        super.add(tree);
+        String boroNameOfTree=tree.getBoroname().toLowerCase().trim();
+        String spcNameOfTree=tree.getSpc_common().toLowerCase().trim();
 
-        //to keep count of borough
-        for (int i = 0; i < boro.length; i++) {
-            if (tree.getBoroname().trim().equalsIgnoreCase(boro[i])){
-                boroTotals[i]++;
-                break;
-            }
+        if (boroCount.containsKey(boroNameOfTree)) {
+            boroCount.put(boroNameOfTree, boroCount.get(boroNameOfTree)+1);
+        }else boroCount.put(boroNameOfTree, 1);
+
+        if (!species.contains(spcNameOfTree)) {
+            species.add(spcNameOfTree);
+            speciesCount.add(1); //add at same index
+        }else {
+            int index= species.indexOf(spcNameOfTree);
+            Integer count= speciesCount.get(index)+1;
+            speciesCount.set(index, count);
         }
-
-        if (!species.contains(tree.getSpc_common().toLowerCase().trim()))
-            species.add(tree.getSpc_common().toLowerCase().trim());
 
         return true;
     }
 
     @Override
     public boolean remove(Object o) {
-        if (o == null) throw new NullPointerException("Specified element cannot be null.");
-        Tree tree = (Tree) o; //cast into type
-        if (!this.contains(tree)) return false;
-        root = findToRemove(root, tree);
-        String treeBoro = tree.getBoroname().trim();
-        String treeSpc = tree.getSpc_common().toLowerCase().trim();
-        size--;
+        super.remove(o);
 
-        for (int i = 0; i < boro.length; i++) {
-            if (treeBoro.equalsIgnoreCase(boro[i])) {
-                boroTotals[i]--;
-                break;
-            }
-        }
+        //if no possible class cast exception:
+        String treeBoro= ((Tree) o).getBoroname().toLowerCase().trim();
+        String treeSpc= ((Tree) o).getSpc_common().toLowerCase().trim();
+        boroCount.put(treeBoro, boroCount.get(treeBoro)-1);
 
-        //worst case scenario: check if TreeCollection contains a tree with removed tree's specific unique treespc
-        //if no, we have to remove that tree species from the arraylist that contains unique species
-        if (getCountByTreeSpecies(treeSpc) == 0) species.remove(treeSpc);
+        int indexOfSpeciesName= species.indexOf(treeSpc);
+        int count= speciesCount.get(indexOfSpeciesName)-1;
+        speciesCount.set(indexOfSpeciesName, count);
+        if (count==0) species.remove(treeSpc);
+
         return true;
     }
 
