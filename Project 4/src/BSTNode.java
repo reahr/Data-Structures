@@ -6,46 +6,76 @@ import java.util.Comparator;
 public class BSTNode <E extends Comparable <E> >
         implements Comparable < BSTNode<E> >{
 
-    public void setData(E data) {
-        this.data = data;
-    }
-
     private E data;
-
-    public void setLeft(BSTNode<E> left) {
-        this.left = left;
-    }
-
     private BSTNode<E> left;
-
-    public void setRight(BSTNode<E> right) {
-        this.right = right;
-    }
-
     private BSTNode<E> right;
 
     public BSTNode(E data){
         this.data=data;
     }
 
-    public BSTNode (E data, BSTNode <E> left, BSTNode<E> right){
-        this.data=data;
-        this.left=left;
-        this.right=left;
+    /**
+     * Sets data to data specified
+     *
+     * @param data - data to be contained in this BSTNode
+     */
+    public void setData(E data) {
+        this.data = data;
     }
 
+    /**
+     * Set's this BSTNode's left child to left node specified
+     *
+     * @param left - BSTNode to be left child of this BSTNode
+     */
+    public void setLeft(BSTNode<E> left) {
+        this.left = left;
+    }
+
+    /**
+     * Set's this BSTNode's right child to right node specified
+     *
+     * @param right - BSTNode to be right child of this BSTNode
+     */
+    public void setRight(BSTNode<E> right) {
+        this.right = right;
+    }
+
+    /**
+     * Gets this BSTNode's data
+     *
+     * @return E data contained in this BSTNode
+     */
     public E getData() {
         return data;
     }
 
+    /**
+     * Gets this BSTNode's left child
+     *
+     * @return this BSTNode's left child
+     */
     public BSTNode<E> getLeft() {
         return left;
     }
 
+    /**
+     * Gets this BSTNode's right child
+     *
+     * @return this BSTNode's right child
+     */
     public BSTNode<E> getRight() {
         return right;
     }
 
+    /**
+     * Compares this object with the specified object for order.
+     *
+     * @param other the BSTNode object to be compared.
+     *
+     * @return a negative integer, zero, or a positive integer as this object is less than,
+     *      equal to, or greater than the specified object.
+     */
     public int compareTo(BSTNode<E> other){
         return this.data.compareTo( other.data );
     }

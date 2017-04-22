@@ -240,7 +240,7 @@ public class Tree implements Comparable<Tree>{
      * @return integer, if tree is "greater than" otherTree, return 1
      *      if tree is "less than" otherTree, return -1
      */
-    public int compareTo(Tree otherTree){
+    public int compareTo(Tree otherTree) throws NullPointerException, ClassCastException{
         if (otherTree==null) throw new NullPointerException("Cannot compare to a null object");
         if (this.spc_common.compareToIgnoreCase(otherTree.spc_common)==0){
             return this.tree_id-otherTree.tree_id; //will return negative if lower, positive if higher, 0 if the same
@@ -248,16 +248,16 @@ public class Tree implements Comparable<Tree>{
         return this.spc_common.compareToIgnoreCase(otherTree.spc_common);
     }
 
-    @Override
     /**
      * Verify if Tree object in question is equal to this Tree object by checking its ID and species
      *
      * @param object Object that is casted into a Tree object
      *
-     * @return a boolean, if Tree object in question is equal to this Tree
+     * @return true if Tree object in question is equal to this Tree, false otherwise
      *
      * @throws IllegalArgumentException if IDs are the same but species are not
      */
+    @Override
     public boolean equals(Object object) {
         //check if object is null if not cast into Tree object
         if (object == null) return false;
