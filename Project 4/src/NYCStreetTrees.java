@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -11,12 +10,12 @@ import java.util.Collections;
  *
  * Any exceptions while parsing data from file or creating objects are skipped over silently
  *      The try/catch blocks of these  handlers include a line that will print if there is any error. If desired,
- *      uncomment these lines to find any errors that will throw an exception. (Lines 85, 108, 123)
+ *      uncomment these lines to find any errors that will throw an exception. (Lines 86, 109, 122)
  *
- * Uncomment out "Collections.sort(treeList)" to sort TreeList ArrayList (Line 120)
+ * Uncomment out "Collections.sort(treeList)" to sort TreeList ArrayList (Line 119)
  *
  * @author Reah Rajmangal
- * @version April 20, 2017
+ * @version April 22, 2017
  */
 public class NYCStreetTrees {
 
@@ -128,12 +127,16 @@ public class NYCStreetTrees {
         //close file
         fileInput.close();
 
+        /*Begin actual program*/
         //get total amount trees for NYC
         int totalNYC= treeCollection.getTotalNumberOfTrees();
-        //get totals for each borough using getter method (change according to order on spec)
+
+        //get totals for each borough (change according to order in spec)
         String[] boroNames= {"Manhattan", "Bronx", "Brooklyn", "Queens", "Staten Island"};
-        HashMap<String, Integer> boroCount= treeCollection.getBoroCount();
         int [] boroTotals={0, 0, 0, 0, 0};
+
+        HashMap<String, Integer> boroCount= treeCollection.getBoroCount();
+
         for (int i=0; i<boroNames.length; i++ ) {
             if (boroCount.get(boroNames[i].toLowerCase()) != null){
                 boroTotals[i] += boroCount.get(boroNames[i].toLowerCase());
@@ -184,7 +187,7 @@ public class NYCStreetTrees {
                 System.out.printf("     %-13s: %,8d %-10s %6.2f%%\n", "NYC", totalNYCForMatchedSpecies, "("+String.format("%,d",totalNYC)+")",percentageTotalNYC);
 
                 //get percentage of totals matched for each boro out of all trees in each boro (using array)
-                for (int i=0; i<boroTotalsForMatchedSpecies.size(); i++) {
+                for (int i=0; i<boroNames.length; i++) {
                     double percentageTotalBoro= ((double)boroTotalsForMatchedSpecies.get(i)/(double)boroTotals[i])*100;
                     if (Double.isNaN(percentageTotalBoro)) percentageTotalBoro=0;
                     System.out.printf("     %-13s: %,8d %-10s %6.2f%%\n", boroNames[i], boroTotalsForMatchedSpecies.get(i),

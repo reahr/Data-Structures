@@ -27,10 +27,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="Node.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
+            <state relative-caret-position="575">
               <caret line="25" column="4" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="27" selection-end-column="5" />
               <folding>
                 <element signature="e#610#611#0" expanded="true" />
@@ -43,7 +43,7 @@
       <file leaf-file-name="MyStack.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MyStack.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-430">
+            <state relative-caret-position="-517">
               <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
               <folding />
             </state>
@@ -55,10 +55,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1225">
               <caret line="51" column="24" lean-forward="false" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
-              <folding>
-                <element signature="e#274#275#0" expanded="false" />
-                <element signature="e#306#307#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -66,23 +63,21 @@
       <file leaf-file-name="MyQueueTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/MyQueueTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
-              <folding />
+            <state relative-caret-position="1150">
+              <caret line="147" column="9" lean-forward="false" selection-start-line="147" selection-start-column="9" selection-end-line="147" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegionGrowing.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RegionGrowing.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/RegionGrowing.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1775">
-              <caret line="77" column="19" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#7375#7376#0" expanded="false" />
-                <element signature="e#7418#7419#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="-842">
+              <caret line="233" column="14" lean-forward="false" selection-start-line="233" selection-start-column="14" selection-end-line="233" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,6 +103,27 @@
               <caret line="68" column="5" lean-forward="false" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="false" />
+                <element signature="e#427#436#0" expanded="false" />
+                <element signature="e#833#842#0" expanded="false" />
+                <element signature="e#1107#1116#0" expanded="false" />
+                <element signature="e#1477#1486#0" expanded="false" />
+                <element signature="e#1882#1891#0" expanded="false" />
+                <element signature="e#2242#2251#0" expanded="false" />
+                <element signature="e#2659#2668#0" expanded="false" />
+                <element signature="e#3136#3145#0" expanded="false" />
+                <element signature="e#3948#3957#0" expanded="false" />
+                <element signature="e#4500#4509#0" expanded="false" />
+                <element signature="e#5090#5099#0" expanded="false" />
+                <element signature="e#5610#5619#0" expanded="false" />
+                <element signature="e#6271#6280#0" expanded="false" />
+                <element signature="e#6739#6748#0" expanded="false" />
+                <element signature="e#7239#7248#0" expanded="false" />
+                <element signature="e#7755#7764#0" expanded="false" />
+                <element signature="e#8235#8244#0" expanded="false" />
+                <element signature="e#8766#8775#0" expanded="false" />
+                <element signature="e#9447#9456#0" expanded="false" />
+                <element signature="e#10196#10205#0" expanded="false" />
+                <element signature="e#10934#10943#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -195,7 +211,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -239,6 +254,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -714,6 +730,8 @@
       <workItem from="1492475021392" duration="3000" />
       <workItem from="1492475960490" duration="1215000" />
       <workItem from="1492527678398" duration="1201000" />
+      <workItem from="1492809604509" duration="1806000" />
+      <workItem from="1492821117026" duration="886000" />
     </task>
     <servers />
   </component>
@@ -750,7 +768,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58400000" />
+    <option name="totallyTimeSpent" value="61092000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -772,20 +790,20 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819906" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30752212" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32938388" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2516269" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26030368" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991362" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5202247" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3992891" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -846,11 +864,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6475">
           <caret line="259" column="8" lean-forward="false" selection-start-line="259" selection-start-column="8" selection-end-line="259" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#7375#7376#0" expanded="false" />
-            <element signature="e#7418#7419#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -869,10 +883,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="700">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="e#274#275#0" expanded="false" />
-            <element signature="e#306#307#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -892,11 +903,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6475">
           <caret line="259" column="8" lean-forward="true" selection-start-line="259" selection-start-column="8" selection-end-line="259" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#7375#7376#0" expanded="false" />
-            <element signature="e#7418#7419#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -915,10 +922,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="700">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="e#274#275#0" expanded="false" />
-            <element signature="e#306#307#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1026,20 +1030,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/MyQueueTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/MyStackTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1600">
           <caret line="68" column="5" lean-forward="false" selection-start-line="68" selection-start-column="5" selection-end-line="68" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="false" />
+            <element signature="e#427#436#0" expanded="false" />
+            <element signature="e#833#842#0" expanded="false" />
+            <element signature="e#1107#1116#0" expanded="false" />
+            <element signature="e#1477#1486#0" expanded="false" />
+            <element signature="e#1882#1891#0" expanded="false" />
+            <element signature="e#2242#2251#0" expanded="false" />
+            <element signature="e#2659#2668#0" expanded="false" />
+            <element signature="e#3136#3145#0" expanded="false" />
+            <element signature="e#3948#3957#0" expanded="false" />
+            <element signature="e#4500#4509#0" expanded="false" />
+            <element signature="e#5090#5099#0" expanded="false" />
+            <element signature="e#5610#5619#0" expanded="false" />
+            <element signature="e#6271#6280#0" expanded="false" />
+            <element signature="e#6739#6748#0" expanded="false" />
+            <element signature="e#7239#7248#0" expanded="false" />
+            <element signature="e#7755#7764#0" expanded="false" />
+            <element signature="e#8235#8244#0" expanded="false" />
+            <element signature="e#8766#8775#0" expanded="false" />
+            <element signature="e#9447#9456#0" expanded="false" />
+            <element signature="e#10196#10205#0" expanded="false" />
+            <element signature="e#10934#10943#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1049,15 +1066,11 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/RegionGrowing.java">
+    <entry file="file://$PROJECT_DIR$/src/MyStack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1775">
-          <caret line="77" column="19" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#7375#7376#0" expanded="false" />
-            <element signature="e#7418#7419#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="-517">
+          <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1065,29 +1078,36 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1225">
           <caret line="51" column="24" lean-forward="false" selection-start-line="51" selection-start-column="24" selection-end-line="51" selection-end-column="24" />
-          <folding>
-            <element signature="e#274#275#0" expanded="false" />
-            <element signature="e#306#307#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MyStack.java">
+    <entry file="file://$PROJECT_DIR$/tests/MyQueueTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-430">
-          <caret line="20" column="6" lean-forward="false" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-          <folding />
+        <state relative-caret-position="1150">
+          <caret line="147" column="9" lean-forward="false" selection-start-line="147" selection-start-column="9" selection-end-line="147" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Node.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
+        <state relative-caret-position="575">
           <caret line="25" column="4" lean-forward="false" selection-start-line="25" selection-start-column="4" selection-end-line="27" selection-end-column="5" />
           <folding>
             <element signature="e#610#611#0" expanded="true" />
             <element signature="e#637#638#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/RegionGrowing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-842">
+          <caret line="233" column="14" lean-forward="false" selection-start-line="233" selection-start-column="14" selection-end-line="233" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>

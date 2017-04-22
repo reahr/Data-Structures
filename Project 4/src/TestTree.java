@@ -146,6 +146,7 @@ public class TestTree {
         System.out.println(treeCollection.getCountByTreeSpecies("red oak"));
         System.out.println(treeCollection.getMatchingSpecies("red oak"));
         System.out.println(treeCollection.remove(t2));
+        System.out.println(treeCollection.first());
         System.out.println(treeCollection.getCountByTreeSpecies("red oak"));
         System.out.println(treeCollection.getMatchingSpecies("red oak"));
 

@@ -2,7 +2,7 @@
  * This class stores information on a particular tree that grows in NYC.
  *
  * @author Reah Rajmangal
- * @version February 14, 2017
+ * @version April 22, 2017
  */
 
 public class Tree implements Comparable<Tree>{
@@ -274,11 +274,27 @@ public class Tree implements Comparable<Tree>{
         return false;
     }
 
+    /**
+     * Checks if this Tree has the same species name as other tree (t)
+     *
+     * @param t - Tree object whose name will be compared to this Tree's
+     *
+     * @return true if this tree and have the same species names; it should return false otherwise.
+     */
     public boolean sameName (Tree t){
         if (this.spc_common.equalsIgnoreCase(t.spc_common)) return true;
         else return false;
     }
 
+    /**
+     * Compares the name of this Tree object with other Tree (t)
+     *
+     * @param t - Tree object whose name will be compared to this Tree's
+     *
+     * @return zero if this tree and t have the same species name;
+     * negative value if this tree’s species name is smaller than the t species name (case insensitive);
+     * positive value if this tree’s species name is larger than the t’s species name (case insensitive)
+     */
     public int compareName (Tree t){
         if (t==null) throw new NullPointerException("Cannot compare name of a null object.");
         if (this.spc_common.equalsIgnoreCase(t.spc_common)) return 0;
